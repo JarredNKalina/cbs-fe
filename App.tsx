@@ -1,20 +1,59 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { createStackNavigator } from "@react-navigation/stack"
+import { Home } from "./views/home"
+import { Login } from "./views/auth/login"
+import { NavigationContainer } from "@react-navigation/native"
+import * as SplashScreen from "expo-splash-screen"
+import {
+	useFonts,
+	Lato_300Light,
+	Lato_400Regular,
+	Lato_700Bold,
+	Lato_900Black,
+} from "@expo-google-fonts/lato"
+import { SourceSansPro_400Regular } from "@expo-google-fonts/source-sans-pro"
+import { Register } from "./views/auth/register"
+import { ForgotPassword } from "./views/auth/forgot-password/ForgotPassword"
+
+export type RootStackParamList = {
+	Login: undefined
+	Home: undefined
+	Register: undefined
+	ForgotPassword: undefined
+}
+const Stack = createStackNavigator<RootStackParamList>()
+
+SplashScreen.preventAutoHideAsync()
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+	let [fontsLoaded] = useFonts({
+		Lato_300Light,
+		Lato_400Regular,
+		Lato_700Bold,
+		Lato_900Black,
+		SourceSansPro_400Regular,
+	})
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+	if (!fontsLoaded) {
+		return null
+	} else {
+		SplashScreen.hideAsync()
+	}
+	return (
+		<NavigationContainer>
+			<Stack.Navigator>
+				<Stack.Screen options={{ headerShown: false }} name="Login" component={Login} />
+				<Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
+				<Stack.Screen
+					options={{ headerShown: false }}
+					name="Register"
+					component={Register}
+				/>
+				<Stack.Screen
+					options={{ headerShown: false }}
+					name="ForgotPassword"
+					component={ForgotPassword}
+				/>
+			</Stack.Navigator>
+		</NavigationContainer>
+	)
+}
