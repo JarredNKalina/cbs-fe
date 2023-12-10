@@ -8,9 +8,9 @@
     <true/>
     <key>EXUpdatesLaunchWaitMs</key>
     <integer>0</integer>
-    <key>EXUpdatesSDKVersion</key>
-    <string>48.0.0</string>
     <key>EXUpdatesURL</key>
-    <string>https://exp.host/@anonymous/cbs-app-fe</string>
+    <string>https://u.expo.dev/dfa94fbd-c943-4ba2-94ec-34ba29ccac72</string>
+    <key>EXUpdatesRuntimeVersion</key>
+    <string>1.0.0</string>
   </dict>
 </plist>

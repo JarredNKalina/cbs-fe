@@ -1,0 +1,1 @@
+export { BarberScreen } from "./Barber"

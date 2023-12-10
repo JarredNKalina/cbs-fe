@@ -1,47 +1,49 @@
 {
-  "expo": {
-    "name": "cbs-app-fe",
-    "slug": "cbs-app",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.cbsappfe"
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "package": "com.anonymous.cbsappfe"
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      [
-        "react-native-auth0",
-        {
-          "domain": "dev-oibbpy7sdsqbwstt.us.auth0.com",
-          "customScheme": "YOUR_CUSTOM_SCHEME"
-        }
-      ]
-    ],
-    "extra": {
-      "eas": {
-        "projectId": "dfa94fbd-c943-4ba2-94ec-34ba29ccac72"
-      }
-    },
-    "owner": "jarredkalina"
-  }
+	"expo": {
+		"name": "cbs-app-fe",
+		"slug": "cbs-app",
+		"version": "1.0.0",
+		"orientation": "portrait",
+		"icon": "./assets/icon.png",
+		"userInterfaceStyle": "light",
+		"splash": {
+			"image": "./assets/splash.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"assetBundlePatterns": ["**/*"],
+		"ios": {
+			"supportsTablet": true,
+			"bundleIdentifier": "com.anonymous.cbsappfe"
+		},
+		"android": {
+			"adaptiveIcon": {
+				"foregroundImage": "./assets/adaptive-icon.png",
+				"backgroundColor": "#ffffff"
+			},
+			"package": "com.anonymous.cbsappfe"
+		},
+		"web": {
+			"favicon": "./assets/favicon.png"
+		},
+		"plugins": [
+			[
+				"react-native-auth0",
+				{
+					"domain": "dev-oibbpy7sdsqbwstt.us.auth0.com",
+					"customScheme": "YOUR_CUSTOM_SCHEME"
+				}
+			]
+		],
+		"extra": {
+			"eas": {
+				"projectId": "dfa94fbd-c943-4ba2-94ec-34ba29ccac72"
+			}
+		},
+		"owner": "jarredkalina",
+		"runtimeVersion": "1.0.0",
+		"updates": {
+			"url": "https://u.expo.dev/dfa94fbd-c943-4ba2-94ec-34ba29ccac72"
+		}
+	}
 }

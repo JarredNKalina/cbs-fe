@@ -1,7 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack"
-import { Home } from "./views/home"
-import { Login } from "./views/auth/login"
 import { NavigationContainer } from "@react-navigation/native"
+import { Login } from "./views/auth/login"
 import * as SplashScreen from "expo-splash-screen"
 import {
 	useFonts,
@@ -13,16 +12,40 @@ import {
 import { SourceSansPro_400Regular } from "@expo-google-fonts/source-sans-pro"
 import { Register } from "./views/auth/register"
 import { ForgotPassword } from "./views/auth/forgot-password/ForgotPassword"
+import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo"
+import * as SecureStore from "expo-secure-store"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { SafeAreaProvider } from "react-native-safe-area-context"
+import { BottomTabs } from "./components/navigation"
 
 export type RootStackParamList = {
 	Login: undefined
-	Home: undefined
 	Register: undefined
 	ForgotPassword: undefined
 }
+
 const Stack = createStackNavigator<RootStackParamList>()
 
+const queryClient = new QueryClient()
+
 SplashScreen.preventAutoHideAsync()
+
+const tokenCache = {
+	async getToken(key: string) {
+		try {
+			return SecureStore.getItemAsync(key)
+		} catch (err) {
+			return null
+		}
+	},
+	async saveToken(key: string, value: string) {
+		try {
+			return SecureStore.setItemAsync(key, value)
+		} catch (err) {
+			return
+		}
+	},
+}
 
 export default function App() {
 	let [fontsLoaded] = useFonts({
@@ -38,22 +61,39 @@ export default function App() {
 	} else {
 		SplashScreen.hideAsync()
 	}
+	const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY ?? ""
 	return (
-		<NavigationContainer>
-			<Stack.Navigator>
-				<Stack.Screen options={{ headerShown: false }} name="Login" component={Login} />
-				<Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
-				<Stack.Screen
-					options={{ headerShown: false }}
-					name="Register"
-					component={Register}
-				/>
-				<Stack.Screen
-					options={{ headerShown: false }}
-					name="ForgotPassword"
-					component={ForgotPassword}
-				/>
-			</Stack.Navigator>
-		</NavigationContainer>
+		<ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
+			<QueryClientProvider client={queryClient}>
+				<SafeAreaProvider>
+					<SignedOut>
+						<NavigationContainer>
+							<Stack.Navigator initialRouteName="Login">
+								<Stack.Screen
+									options={{ headerShown: false }}
+									name="Login"
+									component={Login}
+								/>
+								<Stack.Screen
+									options={{ headerShown: false }}
+									name="Register"
+									component={Register}
+								/>
+								<Stack.Screen
+									options={{ headerShown: false }}
+									name="ForgotPassword"
+									component={ForgotPassword}
+								/>
+							</Stack.Navigator>
+						</NavigationContainer>
+					</SignedOut>
+					<SignedIn>
+						<NavigationContainer>
+							<BottomTabs />
+						</NavigationContainer>
+					</SignedIn>
+				</SafeAreaProvider>
+			</QueryClientProvider>
+		</ClerkProvider>
 	)
 }

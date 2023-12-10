@@ -1,4 +1,10 @@
-import { StyleSheet, TextInput, Text } from "react-native"
+import {
+	StyleSheet,
+	TextInput,
+	Text,
+	KeyboardTypeOptions,
+	ReturnKeyTypeOptions,
+} from "react-native"
 
 type InputProps = {
 	value: string
@@ -7,8 +13,12 @@ type InputProps = {
 	wasSubmitted: boolean
 	onBlur?: () => void
 	touched?: boolean
+	keyboardType?: KeyboardTypeOptions
 	errorMessage?: string | null
 	secureText?: boolean
+	returnKeyType?: ReturnKeyTypeOptions
+	multiline?: boolean
+	height?: number
 }
 export function Input({
 	value,
@@ -18,7 +28,11 @@ export function Input({
 	secureText = false,
 	touched,
 	wasSubmitted,
+	keyboardType,
+	returnKeyType,
 	errorMessage,
+	multiline = false,
+	height,
 }: InputProps) {
 	const displayErrorMessage = (wasSubmitted || touched) && errorMessage
 
@@ -26,12 +40,15 @@ export function Input({
 		<>
 			<TextInput
 				placeholder={placeholder}
-				style={styles.input}
+				style={[styles.input, { height: height }]}
 				value={value}
 				onBlur={onBlur}
+				returnKeyType={returnKeyType}
 				onChangeText={onChange}
+				keyboardType={keyboardType}
 				secureTextEntry={secureText}
 				placeholderTextColor={"#7E869A"}
+				multiline={multiline}
 			/>
 			{displayErrorMessage ? <Text style={styles.errorMessage}>{errorMessage}</Text> : null}
 		</>

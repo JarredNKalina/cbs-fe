@@ -1,4 +1,4 @@
-import { emailRegex } from "../../../constants"
+import { phoneNumberRegex } from "../../../constants"
 
 export type Form<T extends string> = Record<
 	T,
@@ -16,30 +16,50 @@ export function getPasswordError<FormInputs extends string>(
 ) {
 	if (!formInfo.password.text) {
 		return "Password is required."
-	} else if (formInfo.password.text.length < 6) {
-		return "Password must be at least 6 characters."
+	} else if (formInfo.password.text.length < 8) {
+		return "Password must be at least 8 characters."
 	} else {
 		return null
 	}
 }
 
-export function getEmailError<FormInputs extends string>(
-	formInfo: ParamWithKnownEntity<FormInputs, "email">
+export function getCodeError<FormInputs extends string>(
+	formInfo: ParamWithKnownEntity<FormInputs, "code">
 ) {
-	if (!formInfo.email.text) {
-		return "Email is required."
-	} else if (emailRegex.test(formInfo.email.text) === false) {
-		return "Email is invalid."
+	if (!formInfo.code.text) {
+		return "Code is required."
 	} else {
 		return null
 	}
 }
 
-export function getFullNameError<FormInputs extends string>(
-	formInfo: ParamWithKnownEntity<FormInputs, "fullName">
+export function getFirstNameError<FormInputs extends string>(
+	formInfo: ParamWithKnownEntity<FormInputs, "firstName">
 ) {
-	if (!formInfo.fullName.text) {
-		return "Full name is required."
+	if (!formInfo.firstName.text) {
+		return "First name is required."
+	} else {
+		return null
+	}
+}
+
+export function getLastNameError<FormInputs extends string>(
+	formInfo: ParamWithKnownEntity<FormInputs, "lastName">
+) {
+	if (!formInfo.lastName.text) {
+		return "Last name is required."
+	} else {
+		return null
+	}
+}
+
+export function getPhoneNumberError<FormInputs extends string>(
+	formInfo: ParamWithKnownEntity<FormInputs, "phoneNumber">
+) {
+	if (!formInfo.phoneNumber.text) {
+		return "Phone number is required."
+	} else if (phoneNumberRegex.test(formInfo.phoneNumber.text) === false) {
+		return "Phone number is invalid."
 	} else {
 		return null
 	}
