@@ -1,7 +1,6 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { HomeScreen } from "../../views/home"
 import { BarberScreen } from "../../views/barber"
-import { InspirationScreen } from "../../views/inspiration"
 import { AccountSettingsScreen } from "../../views/account-settings"
 import { BookingScreen } from "../../views/booking"
 import { TabBar } from "./TabBar"
@@ -24,11 +23,11 @@ export function BottomTabs() {
 				component={HomeScreen}
 				options={{ header: props => <HomePageHeader {...props} /> }}
 			/>
-			<Tab.Screen
+			{/* <Tab.Screen
 				name="Inspiration"
 				component={InspirationScreen}
 				options={{ headerStyle: { backgroundColor: "#E3E4E8" } }}
-			/>
+			/> */}
 			<Tab.Screen
 				name="Booking"
 				component={BookingScreen}

@@ -106,15 +106,17 @@ export function Confirmation({
 							</Pressable>
 						</View>
 						<View style={styles.section}>
-							<View>
-								<Text style={styles.sectionHeader}>Barber Info</Text>
-								<Text style={styles.itemText}>{barber.displayName}</Text>
+							<View style={{ flexDirection: "row", gap: 16}}>
+								<View>
+									<Text style={styles.sectionHeader}>Barber Info</Text>
+									<Text style={styles.itemText}>{barber.displayName}</Text>
+								</View>
 								<Image
-									source={
-										barber.profileImageUrl
+									source={{
+										uri: barber.profileImageUrl
 											? barber.profileImageUrl
-											: require("../../../assets/default-pic.png")
-									}
+											: require("../../../assets/default-pic.png"),
+									}}
 									style={{ width: 72, height: 72, borderRadius: 16 }}
 									// placeholder={}
 									// TODO: place barbershop logo as placeholder

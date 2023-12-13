@@ -1,16 +1,11 @@
-import { useNavigation } from "@react-navigation/native"
 import { Pressable, StyleSheet, Switch, Text, View } from "react-native"
-import { RootBottomTabsParamList } from "../../components/navigation"
-import { StackNavigationProp } from "@react-navigation/stack"
 import { Button, Header } from "../../components"
 import { useClerk } from "@clerk/clerk-expo"
 
 import { ChevronLeftIcon } from "../../icons"
 import { useState } from "react"
 
-type AccountSettingsScreenProp = StackNavigationProp<RootBottomTabsParamList, "Profile">
 export function AccountSettingsScreen() {
-	const navigation = useNavigation<AccountSettingsScreenProp>()
 	const { user, signOut } = useClerk()
 
 	const [areAppointmentRemindersEnabled, setAreAppointmentRemindersEnabled] = useState(false)
@@ -24,6 +19,7 @@ export function AccountSettingsScreen() {
 						<Header>Profile</Header>
 						<View style={{ gap: 16 }}>
 							<Item action={() => {}} name="Personal Info" />
+							<Item action={() => {}} name="Login Info" />
 							{/* TODO: create above action */}
 							{/* <Item action={() => {}} name="Payment" /> */}
 							{/* <Item action={() => {}} name="Transaction History" /> */}

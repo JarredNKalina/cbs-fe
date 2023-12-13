@@ -1,16 +1,17 @@
 import { useNavigation } from "@react-navigation/native"
-import { ActivityIndicator, Pressable, StyleSheet, Text, View } from "react-native"
+import { ActivityIndicator, FlatList, Pressable, StyleSheet, Text, View } from "react-native"
 import { RootBottomTabsParamList } from "../../components/navigation"
 import { StackNavigationProp } from "@react-navigation/stack"
 import { useQuery } from "@tanstack/react-query"
 import { getBookingProfiles } from "../../services/bookings/api"
 import { Image } from "expo-image"
 import { ChevronLeftIcon } from "../../icons"
+import { BookingProfile } from "../../services/bookings/validators"
 
 type BarberScreenProp = StackNavigationProp<RootBottomTabsParamList, "Barber">
-export function BarberScreen() {
-	const navigation = useNavigation<BarberScreenProp>()
+const DefaultImage = require("../../assets/default-pic.png")
 
+export function BarberScreen() {
 	const {
 		data: barberProfiles,
 		isLoading: areProfilesLoading,
@@ -37,42 +38,65 @@ export function BarberScreen() {
 	}
 	return (
 		<View style={styles.container}>
-			{barberProfiles.map(profile => {
-				return (
-					<View style={styles.bookingCard} key={profile.teamMemberId}>
-						<Image
-							source={{
-								uri: profile.profileImageUrl
-									? profile.profileImageUrl
-									: require("../../assets/default-pic.png"),
-							}}
-							style={{ width: "100%", height: 164, borderRadius: 16 }}
-							// placeholder={}
-							// TODO: place barbershop logo as placeholder
-						/>
-						<View>
-							<Text style={styles.profileName}>{profile.displayName}</Text>
-							<View />
-							<Text>{profile.description}</Text>
-							<Pressable style={styles.cardAction}>
-								<Text style={styles.actionText}>
-									Book With {profile.displayName}
-								</Text>
-								<View style={{ transform: [{ rotate: "180deg" }] }}>
-									<ChevronLeftIcon />
-								</View>
-							</Pressable>
-							<Pressable style={styles.cardAction}>
-								<Text style={styles.actionText}>View Testimonials</Text>
-								<View style={{ transform: [{ rotate: "180deg" }] }}>
-									<ChevronLeftIcon fill="#2C55BE" />
-								</View>
-							</Pressable>
-							{/* TODO: figure out testimonials */}
-						</View>
+			<FlatList
+				data={barberProfiles}
+				renderItem={item => {
+					return <Barber profile={item.item} />
+				}}
+				keyExtractor={item => item.teamMemberId}
+				numColumns={2}
+				contentContainerStyle={{ gap: 16 }}
+			/>
+		</View>
+	)
+}
+
+function Barber({ profile }: { profile: BookingProfile }) {
+	const navigation = useNavigation<BarberScreenProp>()
+
+	return (
+		<View style={styles.bookingCard} key={profile.teamMemberId}>
+			<Image
+				source={profile.profileImageUrl ? { uri: profile.profileImageUrl } : DefaultImage}
+				style={{
+					width: "100%",
+					height: 164,
+					borderRadius: 8,
+					borderBottomLeftRadius: 0,
+					borderBottomRightRadius: 0,
+				}}
+				// placeholder={}
+				// TODO: place barbershop logo as placeholder
+			/>
+			<View style={{padding: 8}}>
+				<Text style={styles.profileName}>{profile.displayName}</Text>
+				<View
+					style={{
+						backgroundColor: "#5C677D",
+						height: 1,
+						opacity: 0.5,
+						marginVertical: 8,
+					}}
+				/>
+				<Pressable
+					style={styles.cardAction}
+					onPress={() => {
+						navigation.navigate("Booking")
+					}}
+				>
+					<Text style={styles.actionText}>Book Now</Text>
+					<View style={{ transform: [{ rotate: "180deg" }] }}>
+						<ChevronLeftIcon />
 					</View>
-				)
-			})}
+				</Pressable>
+				{/* <Pressable style={styles.cardAction}>
+					<Text style={styles.actionText}>View Testimonials</Text>
+					<View style={{ transform: [{ rotate: "180deg" }] }}>
+						<ChevronLeftIcon fill="#2C55BE" />
+					</View>
+				</Pressable> */}
+				{/* TODO: figure out testimonials */}
+			</View>
 		</View>
 	)
 }
@@ -86,7 +110,7 @@ const styles = StyleSheet.create({
 		flexWrap: "wrap",
 	},
 	bookingCard: {
-		backgroundColor: "#FFFFFF",
+		backgroundColor: "#F8F9FB",
 		borderRadius: 8,
 		shadowColor: "#000",
 		shadowOffset: {
@@ -99,8 +123,9 @@ const styles = StyleSheet.create({
 		borderWidth: 2,
 		borderColor: "#FFFFFF",
 		width: 176,
+		marginHorizontal: 8,
 	},
-	profileName: { fontFamily: "Lato_700Bold", fontSize: 24 },
+	profileName: { fontFamily: "Lato_700Bold", fontSize: 20 },
 	spinnerContainer: { flex: 1, justifyContent: "center" },
 	cardAction: {
 		justifyContent: "space-between",

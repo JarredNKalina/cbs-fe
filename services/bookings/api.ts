@@ -18,6 +18,7 @@ export async function getBookingProfiles() {
 	return z.array(bookingProfile).parse(data)
 }
 
+
 export async function postBooking(bookingDTO: BookingCreateDTO) {
 	const res = await fetchNoToken(`/bookings`, JSON.stringify(bookingDTO), "POST")
 	if (!res.ok) throw new Error("Network response was not ok")

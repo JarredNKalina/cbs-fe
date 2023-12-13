@@ -23,7 +23,6 @@ export const bookingValidator = z.object({
 export type BookingProfile = z.infer<typeof bookingProfile>
 export const bookingProfile = z.object({
 	teamMemberId: z.string(),
-	description: z.string().optional(),
 	displayName: z.string(),
 	isBookable: z.boolean(),
 	profileImageUrl: z.string().optional(),

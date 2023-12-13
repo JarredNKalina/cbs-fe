@@ -1,8 +1,7 @@
 import { Dispatch, SetStateAction } from "react"
 import { BookingProfile } from "../../../services/bookings/validators"
 import { BookingsTabs } from "../../../views/booking"
-import { Pressable, StyleSheet, Text, View } from "react-native"
-import { Image } from "expo-image"
+import { Pressable, StyleSheet, Text, View, Image } from "react-native"
 import { Button } from "../../Button"
 
 type BarbersProps = {
@@ -11,6 +10,7 @@ type BarbersProps = {
 	selectedId: string | null
 	setSelectedId: Dispatch<SetStateAction<string | null>>
 }
+const DefaultImage = require("../../../assets/default-pic.png")
 
 export function Barbers({ barberProfiles, selectedId, setSelectedId, setTab }: BarbersProps) {
 	return (
@@ -29,13 +29,13 @@ export function Barbers({ barberProfiles, selectedId, setSelectedId, setTab }: B
 							onPress={() => setSelectedId(barberProfile.teamMemberId)}
 						>
 							<Image
-								source={{
-									uri: barberProfile.profileImageUrl
-										? barberProfile.profileImageUrl
-										: require("../../../assets/default-pic.png"),
-								}}
+								source={
+									barberProfile.profileImageUrl
+										? { uri: barberProfile.profileImageUrl }
+										: DefaultImage
+								}
 								style={{ width: 72, height: 72, borderRadius: 16 }}
-								// placeholder={}
+								// placeholder={DefaultImage}
 								// TODO: place barbershop logo as placeholder
 							/>
 							<Text
