@@ -5,7 +5,7 @@ import { Booking } from "../../../services/bookings/validators"
 import { TabRenderer } from "../TabRenderer"
 import { Tab } from "../Tab"
 
-export type ValidTabs = "upcoming" | "previous"
+export type ValidTabs = "upcoming" | "last month"
 
 type AppointmentSummaryProps = {
 	pastBookings: Booking[]
@@ -31,7 +31,7 @@ export function AppointmentSummary({ pastBookings, upcomingBookings }: Appointme
 			<View style={styles.appointmentContent}>
 				<View style={styles.tabContainer}>
 					<Tab tabName="upcoming" setTab={setTab} isActive={"upcoming" === tab} />
-					<Tab tabName="previous" setTab={setTab} isActive={"previous" === tab} />
+					<Tab tabName="last month" setTab={setTab} isActive={"last month" === tab} />
 				</View>
 			</View>
 			<TabRenderer

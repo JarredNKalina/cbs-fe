@@ -6,6 +6,10 @@ import { LoyaltyInfo } from "../../services/loyalty/validators"
 
 type LoyaltyProps = { loyalty: LoyaltyInfo }
 export function Loyalty({ loyalty }: LoyaltyProps) {
+	const targetPoints = loyalty.rewardTiers.map(tier => tier.points)[0]
+	const currentPoints = loyalty.balance
+
+	const isLoyaltyDisabled = currentPoints < targetPoints
 	return (
 		<View style={styles.container}>
 			<View style={styles.headerFlex}>
@@ -26,7 +30,7 @@ export function Loyalty({ loyalty }: LoyaltyProps) {
 				<Button onPress={() => {}} variant="secondary">
 					Details
 				</Button>
-				<Button onPress={() => {}} variant="secondary" disabled>
+				<Button onPress={() => {}} variant="secondary" disabled={isLoyaltyDisabled}>
 					Redeem
 				</Button>
 			</View>

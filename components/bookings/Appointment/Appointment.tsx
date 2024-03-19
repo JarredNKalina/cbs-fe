@@ -37,7 +37,7 @@ export function Appointment({
 		queryFn: () => {
 			return getAvailability(selectedServiceId, selectedBarberId)
 		},
-		queryKey: ["availability"],
+		queryKey: ["availability", selectedServiceId, selectedBarberId],
 	})
 
 	if (isAvailabilityError) {

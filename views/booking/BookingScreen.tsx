@@ -29,6 +29,12 @@ export function BookingScreen() {
 
 	const [tab, setTab] = useState<BookingsTabs>(1)
 
+	useEffect(() => {
+		setSelectedDate(null)
+		setSelectedTime(null)
+	}, [selectedBarberId])
+	// If selectedBarberId changes, reset the selected date
+
 	const { user } = useClerk()
 	const {
 		data: services,

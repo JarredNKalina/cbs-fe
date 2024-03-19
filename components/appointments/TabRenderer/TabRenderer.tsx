@@ -22,7 +22,7 @@ export function TabRenderer({ tab, upcomingBookings, previousBookings }: TabRend
 		) : (
 			<NoBookings type="upcoming" />
 		)
-	} else if (tab === "previous") {
+	} else if (tab === "last month") {
 		return previousBookings.length > 0 ? (
 			<View style={{ maxHeight: 210 }}>
 				<ScrollView contentContainerStyle={{ gap: 8 }}>
@@ -36,7 +36,7 @@ export function TabRenderer({ tab, upcomingBookings, previousBookings }: TabRend
 				{previousBookings.map(booking => (
 					<AppointmentCard booking={booking} key={booking.id} />
 				))}
-				<NoBookings type="previous" />
+				<NoBookings type="last month" />
 			</ScrollView>
 		)
 	}
@@ -47,11 +47,19 @@ type NoBookingsProps = {
 	type: ValidTabs
 }
 function NoBookings({ type }: NoBookingsProps) {
-	return (
-		<View style={styles.noBookings}>
-			<Text style={styles.noBookingsText}>No {type} bookings.</Text>
-		</View>
-	)
+	if (type === "upcoming") {
+		return (
+			<View style={styles.noBookings}>
+				<Text style={styles.noBookingsText}>No {type} bookings.</Text>
+			</View>
+		)
+	} else {
+		return (
+			<View style={styles.noBookings}>
+				<Text style={styles.noBookingsText}>No bookings within the last month.</Text>
+			</View>
+		)
+	}
 }
 
 const styles = StyleSheet.create({

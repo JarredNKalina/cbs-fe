@@ -6,7 +6,7 @@ type TabsProps = {
 	tabName: ValidTabs
 	isActive: boolean
 }
-type ValidTabs = "upcoming" | "previous"
+type ValidTabs = "upcoming" | "last month"
 
 export function Tab({ setTab, tabName, isActive }: TabsProps) {
 	if (isActive) {
