@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "cbsappfe.app"
-               BlueprintName = "cbsappfe"
-               ReferencedContainer = "container:cbsappfe.xcodeproj">
+               BuildableName = "ColumbianaBarberShop.app"
+               BlueprintName = "ColumbianaBarberShop"
+               ReferencedContainer = "container:ColumbianaBarberShop.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "cbsappfeTests.xctest"
-               BlueprintName = "cbsappfeTests"
-               ReferencedContainer = "container:cbsappfe.xcodeproj">
+               BuildableName = "ColumbianaBarberShopTests.xctest"
+               BlueprintName = "ColumbianaBarberShopTests"
+               ReferencedContainer = "container:ColumbianaBarberShop.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "cbsappfe.app"
-            BlueprintName = "cbsappfe"
-            ReferencedContainer = "container:cbsappfe.xcodeproj">
+            BuildableName = "ColumbianaBarberShop.app"
+            BlueprintName = "ColumbianaBarberShop"
+            ReferencedContainer = "container:ColumbianaBarberShop.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "cbsappfe.app"
-            BlueprintName = "cbsappfe"
-            ReferencedContainer = "container:cbsappfe.xcodeproj">
+            BuildableName = "ColumbianaBarberShop.app"
+            BlueprintName = "ColumbianaBarberShop"
+            ReferencedContainer = "container:ColumbianaBarberShop.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -14,7 +14,7 @@
 		"assetBundlePatterns": ["**/*"],
 		"ios": {
 			"supportsTablet": true,
-			"bundleIdentifier": "com.anonymous.cbsappfe"
+			"bundleIdentifier": "com.jarredkalina.columbiana-barber-shop"
 		},
 		"android": {
 			"adaptiveIcon": {
@@ -37,7 +37,7 @@
 		],
 		"extra": {
 			"eas": {
-				"projectId": "dfa94fbd-c943-4ba2-94ec-34ba29ccac72"
+				"projectId": "d5a6c68d-aaf9-4661-a59f-953b0559a71c"
 			}
 		},
 		"owner": "jarredkalina",
