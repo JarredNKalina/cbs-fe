@@ -1,6 +1,6 @@
 {
 	"expo": {
-		"name": "cbs-app-fe",
+		"name": "Columbiana Barber Shop",
 		"slug": "cbs-app",
 		"version": "1.0.0",
 		"orientation": "portrait",
@@ -21,20 +21,13 @@
 				"foregroundImage": "./assets/adaptive-icon.png",
 				"backgroundColor": "#ffffff"
 			},
-			"package": "com.anonymous.cbsappfe"
+
+			"package": "com.jarredkalina.columbianabarbershop"
 		},
 		"web": {
 			"favicon": "./assets/favicon.png"
 		},
-		"plugins": [
-			[
-				"react-native-auth0",
-				{
-					"domain": "dev-oibbpy7sdsqbwstt.us.auth0.com",
-					"customScheme": "YOUR_CUSTOM_SCHEME"
-				}
-			]
-		],
+		"plugins": ["expo-font", "expo-secure-store"],
 		"extra": {
 			"eas": {
 				"projectId": "d5a6c68d-aaf9-4661-a59f-953b0559a71c"

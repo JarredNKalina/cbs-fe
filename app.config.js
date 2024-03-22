@@ -1,5 +1,5 @@
 module.exports = {
-	name: "Columbiana Barber Shop",
+	name: "CBS App",
 	version: "1.0.0",
 	splash: {
 		image: "./assets/splash.png",
@@ -12,6 +12,12 @@ module.exports = {
 		eas: {
 			projectId: "d5a6c68d-aaf9-4661-a59f-953b0559a71c",
 		},
+	},
+	android: {
+		package: "com.jarredkalina.columbianabarbershop",
+	},
+	ios: {
+		bundleIdentifier: "com.jarredkalina.columbianabarbershop",
 	},
 	runtimeVersion: "1.0.0",
 }

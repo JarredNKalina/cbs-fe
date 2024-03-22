@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react"
 import { BookingProfile } from "../../../services/bookings/validators"
 import { BookingsTabs } from "../../../views/booking"
-import { Pressable, StyleSheet, Text, View, Image } from "react-native"
+import { Pressable, StyleSheet, Text, View, Image, ScrollView } from "react-native"
 import { Button } from "../../Button"
 
 type BarbersProps = {
@@ -16,7 +16,7 @@ export function Barbers({ barberProfiles, selectedId, setSelectedId, setTab }: B
 	return (
 		<View style={styles.container}>
 			<Text style={styles.headerText}>Select a barber</Text>
-			<View style={styles.barbersContainer}>
+			<ScrollView contentContainerStyle={styles.barbersContainer}>
 				{barberProfiles.map(barberProfile => {
 					return (
 						<Pressable
@@ -69,7 +69,7 @@ export function Barbers({ barberProfiles, selectedId, setSelectedId, setTab }: B
 						</Pressable>
 					)
 				})}
-			</View>
+			</ScrollView>
 			<Button
 				onPress={() => {
 					setTab(3)
@@ -92,11 +92,13 @@ const styles = StyleSheet.create({
 	},
 	headerText: { fontFamily: "Lato_700Bold", fontSize: 24 },
 	barbersContainer: {
-		flex: 1,
+		flexGrow: 1,
 		flexDirection: "row",
 		flexWrap: "wrap",
 		rowGap: 16,
 		columnGap: 24,
+		paddingBottom: 16,
+
 	},
 	barberCard: {
 		backgroundColor: "#fff",
@@ -105,7 +107,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 16,
 		justifyContent: "center",
 		alignItems: "center",
-		width: 152,
+		width: "45%",
 		shadowColor: "#000",
 		shadowOffset: {
 			width: 0,

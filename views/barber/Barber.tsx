@@ -68,7 +68,7 @@ function Barber({ profile }: { profile: BookingProfile }) {
 				// placeholder={}
 				// TODO: place barbershop logo as placeholder
 			/>
-			<View style={{padding: 8}}>
+			<View style={{ padding: 8 }}>
 				<Text style={styles.profileName}>{profile.displayName}</Text>
 				<View
 					style={{
@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
 		flexWrap: "wrap",
 	},
 	bookingCard: {
+		width: "45%",
 		backgroundColor: "#F8F9FB",
 		borderRadius: 8,
 		shadowColor: "#000",
@@ -122,7 +123,6 @@ const styles = StyleSheet.create({
 		elevation: 2,
 		borderWidth: 2,
 		borderColor: "#FFFFFF",
-		width: 176,
 		marginHorizontal: 8,
 	},
 	profileName: { fontFamily: "Lato_700Bold", fontSize: 20 },

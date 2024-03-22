@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native"
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from "react-native"
 import { RootBottomTabsParamList } from "../../components/navigation"
 import { StackNavigationProp } from "@react-navigation/stack"
-import { useMutation, useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { getAllServices } from "../../services/services/api"
 import { useEffect, useState } from "react"
 import { Services } from "../../components/bookings/Services"
@@ -19,7 +19,7 @@ export type BookingsTabs = 1 | 2 | 3 | 4
 type BookingScreenProp = StackNavigationProp<RootBottomTabsParamList, "Booking">
 export function BookingScreen() {
 	const navigation = useNavigation<BookingScreenProp>()
-
+	const queryClient = useQueryClient()
 	const [selectedServiceId, setSelectedServiceId] = useState<null | string>(null)
 	const [selectedBarberId, setSelectedBarberId] = useState<null | string>(null)
 	const [selectedDate, setSelectedDate] = useState<null | Availability>(null)
@@ -67,6 +67,7 @@ export function BookingScreen() {
 		mutationFn: postBooking,
 		onSuccess: async id => {
 			resetState()
+			queryClient.invalidateQueries(["upcomingBookings"])
 
 			navigation.navigate("Home")
 			// Dispatch some sort of toast

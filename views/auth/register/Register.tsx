@@ -220,7 +220,7 @@ export function Register() {
 										await handleRegister()
 									}}
 								>
-									Sign in
+									Register
 								</Button>
 							</View>
 							<View style={styles.noAccountContainer}>
@@ -246,7 +246,7 @@ export function Register() {
 								/>
 							</View>
 						</View>
-						<Button onPress={onPressVerify}>Verify Email</Button>
+						<Button onPress={onPressVerify}>Verify Phone Number</Button>
 					</View>
 				)}
 			</KeyboardAvoidingView>
